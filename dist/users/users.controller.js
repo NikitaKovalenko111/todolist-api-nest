@@ -24,6 +24,9 @@ let UsersController = class UsersController {
     registration(registrationBody) {
         return this.usersService.registrationService(registrationBody.username, registrationBody.password);
     }
+    authrizationByToken(token) {
+        return this.usersService.authorizationByToken(token);
+    }
     authorization(authorizationDto) {
         return this.usersService.authorizationService(authorizationDto.username, authorizationDto.password);
     }
@@ -42,6 +45,13 @@ __decorate([
     __metadata("design:paramtypes", [authDto_dto_1.registrationDto]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "registration", null);
+__decorate([
+    (0, common_1.Post)('/authorization/:token'),
+    __param(0, (0, common_1.Param)('token')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "authrizationByToken", null);
 __decorate([
     (0, common_1.Post)('/authorization'),
     __param(0, (0, common_1.Body)()),

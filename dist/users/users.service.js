@@ -54,6 +54,14 @@ let UsersService = class UsersService {
         const token = this.generateAccessToken(candidate._id, candidate.username, candidate.password);
         return token;
     }
+    async authorizationByToken(token) {
+        let decoded = jwt.verify(token, process.env.JWT_KEY);
+        const authUser = {
+            _id: decoded.id,
+            username: decoded.username,
+        };
+        return authUser;
+    }
     async getUsers() {
         let users = await this.userModel.find().exec();
         return users;
