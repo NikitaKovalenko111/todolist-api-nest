@@ -3,7 +3,7 @@ import { authorizationDto, registrationDto } from './authDto.dto';
 import { UsersService } from './users.service';
 import { User } from 'src/schemas/user.schema';
 import { Types } from 'mongoose';
-import { authUserDto } from './authUserDto.dto';
+import { authUserDto, authUserTokenDto } from './authUserDto.dto';
 
 @Controller('users')
 export class UsersController {
@@ -14,13 +14,13 @@ export class UsersController {
         return this.usersService.registrationService(registrationBody.username, registrationBody.password)
     }
 
-    @Post('/authorization/:token')
+    @Get('/authorization/:token')
     authrizationByToken(@Param('token') token: string ): Promise<authUserDto> {
         return this.usersService.authorizationByToken(token)
     }
 
     @Post('/authorization')
-    authorization(@Body() authorizationDto: authorizationDto): Promise<string> {
+    authorization(@Body() authorizationDto: authorizationDto): Promise<authUserTokenDto> {
         return this.usersService.authorizationService(authorizationDto.username, authorizationDto.password)
     }
 

@@ -5,7 +5,7 @@ import { User } from 'src/schemas/user.schema';
 import * as bcrypt from 'bcrypt'
 import { registrationDto } from './authDto.dto';
 import * as jwt from 'jsonwebtoken'
-import { authUserDto } from './authUserDto.dto';
+import { authUserDto, authUserTokenDto } from './authUserDto.dto';
 
 @Injectable()
 export class UsersService {
@@ -39,7 +39,7 @@ export class UsersService {
         return user
     }
 
-    async authorizationService(username: string, password: string): Promise<string> {
+    async authorizationService(username: string, password: string): Promise<authUserTokenDto> {
         let candidate = await this.userModel.findOne({ username: username })
 
         if (!candidate)
@@ -52,7 +52,11 @@ export class UsersService {
 
         const token: string = this.generateAccessToken(candidate._id, candidate.username, candidate.password)
 
-        return token
+        return {
+            token: token,
+            username: candidate.username,
+            _id: candidate._id
+        }
     }
 
     async authorizationByToken(token: string): Promise<authUserDto> {
