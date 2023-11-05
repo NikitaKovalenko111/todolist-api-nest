@@ -5,6 +5,7 @@ import { User } from 'src/schemas/user.schema';
 import * as bcrypt from 'bcrypt'
 import { registrationDto } from './authDto.dto';
 import * as jwt from 'jsonwebtoken'
+import { authUserDto } from './authUserDto.dto';
 
 @Injectable()
 export class UsersService {
@@ -52,6 +53,17 @@ export class UsersService {
         const token: string = this.generateAccessToken(candidate._id, candidate.username, candidate.password)
 
         return token
+    }
+
+    async authorizationByToken(token: string): Promise<authUserDto> {
+        let decoded: jwt.JwtPayload = jwt.verify(token, process.env.JWT_KEY) as User
+
+        const authUser: authUserDto = {
+            _id: decoded.id,
+            username: decoded.username,
+        }
+
+        return authUser
     }
 
     async getUsers(): Promise<User[]> {
