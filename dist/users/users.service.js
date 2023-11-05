@@ -52,7 +52,11 @@ let UsersService = class UsersService {
         if (!isPasswordCorrect)
             throw new common_1.HttpException("Password is incorrect", common_1.HttpStatus.BAD_REQUEST);
         const token = this.generateAccessToken(candidate._id, candidate.username, candidate.password);
-        return token;
+        return {
+            token: token,
+            username: candidate.username,
+            _id: candidate._id
+        };
     }
     async authorizationByToken(token) {
         let decoded = jwt.verify(token, process.env.JWT_KEY);

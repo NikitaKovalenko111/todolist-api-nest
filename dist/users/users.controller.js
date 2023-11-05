@@ -46,7 +46,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "registration", null);
 __decorate([
-    (0, common_1.Post)('/authorization/:token'),
+    (0, common_1.Get)('/authorization/:token'),
     __param(0, (0, common_1.Param)('token')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
