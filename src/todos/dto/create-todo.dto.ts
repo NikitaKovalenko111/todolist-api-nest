@@ -1,9 +1,9 @@
-import { ObjectId } from "mongoose"
+import { Types } from "mongoose"
 
 export class BodyCreateTodoDto {
     readonly target: string
     readonly isCompleted: boolean
-    readonly authorId: ObjectId
+    readonly authorId: Types.ObjectId
 }
 
 export class CreateTodoDto {
@@ -11,5 +11,5 @@ export class CreateTodoDto {
     readonly isCompleted: boolean
     readonly date: Date
     readonly dateIsCompleted?: Date
-    readonly authorId: ObjectId
+    readonly authorId: Types.ObjectId
 }

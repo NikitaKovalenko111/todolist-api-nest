@@ -10,7 +10,7 @@ import { getTodosDtoType } from './dto/get-todo.dto';
 export class TodosController {
     constructor(private readonly todosService: TodosService) {}
 
-    @Post()
+    @Post('/get')
     getAllTodos(@Body() getTodosDto: getTodosDtoType): Promise<Goal[]> {
         return this.todosService.getAllTodos(getTodosDto)
     }
