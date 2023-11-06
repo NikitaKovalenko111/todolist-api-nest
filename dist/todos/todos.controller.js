@@ -40,7 +40,7 @@ let TodosController = class TodosController {
 };
 exports.TodosController = TodosController;
 __decorate([
-    (0, common_1.Post)(),
+    (0, common_1.Post)('/get'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [get_todo_dto_1.getTodosDtoType]),

@@ -1,5 +1,5 @@
-import { ObjectId } from "mongoose";
+import { Types } from "mongoose";
 export declare class getTodosDtoType {
-    readonly authorId: ObjectId;
+    readonly authorId: Types.ObjectId;
     readonly target: string;
 }
