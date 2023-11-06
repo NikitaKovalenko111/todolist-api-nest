@@ -22,13 +22,14 @@
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
-import { HydratedDocument } from 'mongoose';
+import { HydratedDocument, ObjectId } from 'mongoose';
 export type TodoDocument = HydratedDocument<Goal>;
 export declare class Goal {
     target: string;
     isCompleted: boolean;
     date: Date;
     dateIsCompleted: Date | undefined;
+    authorId: ObjectId;
 }
 export declare const TodoSchema: import("mongoose").Schema<Goal, import("mongoose").Model<Goal, any, any, any, import("mongoose").Document<unknown, any, Goal> & Goal & {
     _id: import("mongoose").Types.ObjectId;

@@ -30,6 +30,10 @@ __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", Date)
 ], Goal.prototype, "dateIsCompleted", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", Object)
+], Goal.prototype, "authorId", void 0);
 exports.Goal = Goal = __decorate([
     (0, mongoose_1.Schema)()
 ], Goal);

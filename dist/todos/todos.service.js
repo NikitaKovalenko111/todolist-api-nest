@@ -21,18 +21,19 @@ let TodosService = class TodosService {
     constructor(todoModel) {
         this.todoModel = todoModel;
     }
-    async getAllTodos(target) {
-        return await this.todoModel.find({ target: { $regex: target } }).exec();
-    }
     async getTodoById(id) {
         return await this.todoModel.findById(id);
+    }
+    async getAllTodos(getTodosDto) {
+        return await this.todoModel.find({ target: { $regex: getTodosDto.target }, authorId: getTodosDto.authorId }).exec();
     }
     async postTodoService(bodyCreateTodoDto) {
         let createTodoDto = {
             target: bodyCreateTodoDto.target,
             isCompleted: bodyCreateTodoDto.isCompleted,
             date: new Date(),
-            dateIsCompleted: bodyCreateTodoDto.isCompleted ? new Date() : undefined
+            dateIsCompleted: bodyCreateTodoDto.isCompleted ? new Date() : undefined,
+            authorId: bodyCreateTodoDto.authorId
         };
         return await this.todoModel.create(createTodoDto);
     }

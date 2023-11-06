@@ -17,12 +17,13 @@ const todos_service_1 = require("./todos.service");
 const common_1 = require("@nestjs/common");
 const create_todo_dto_1 = require("./dto/create-todo.dto");
 const update_todo_dto_1 = require("./dto/update-todo.dto");
+const get_todo_dto_1 = require("./dto/get-todo.dto");
 let TodosController = class TodosController {
     constructor(todosService) {
         this.todosService = todosService;
     }
-    getAllTodos(target) {
-        return this.todosService.getAllTodos(target);
+    getAllTodos(getTodosDto) {
+        return this.todosService.getAllTodos(getTodosDto);
     }
     getTodoById(id) {
         return this.todosService.getTodoById(id);
@@ -39,10 +40,10 @@ let TodosController = class TodosController {
 };
 exports.TodosController = TodosController;
 __decorate([
-    (0, common_1.Get)(),
-    __param(0, (0, common_1.Query)('target')),
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [get_todo_dto_1.getTodosDtoType]),
     __metadata("design:returntype", Promise)
 ], TodosController.prototype, "getAllTodos", null);
 __decorate([
