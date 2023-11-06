@@ -4,14 +4,15 @@ import { Controller, Get, Param, Post, Body, Patch, Delete, Query } from '@nestj
 import { ObjectId } from 'mongoose';
 import { BodyCreateTodoDto } from './dto/create-todo.dto';
 import { BodyUpdateTodoDto } from './dto/update-todo.dto';
+import { getTodosDtoType } from './dto/get-todo.dto';
 
 @Controller('todos')
 export class TodosController {
     constructor(private readonly todosService: TodosService) {}
 
-    @Get()
-    getAllTodos(@Query('target') target: string): Promise<Goal[]> {
-        return this.todosService.getAllTodos(target)
+    @Post()
+    getAllTodos(@Body() getTodosDto: getTodosDtoType): Promise<Goal[]> {
+        return this.todosService.getAllTodos(getTodosDto)
     }
 
     @Get('/:id')
